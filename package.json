@@ -10,10 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.7",
+    "@stripe/stripe-js": "^3.0.6",
+    "@tanstack/react-query": "^5.66.0",
+    "@tanstack/react-query-devtools": "^5.66.0",
     "cross-env": "^7.0.3",
+    "lucide-react": "^0.341.0",
+    "mongoose": "^8.2.0",
     "next": "14.2.23",
     "react": "^18",
     "react-dom": "^18",
+    "stripe": "^14.18.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "yenv": "^3.0.1"
   },
   "devDependencies": {
