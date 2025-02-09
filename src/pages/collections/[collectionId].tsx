@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ProductCard from "~/components/product-card";
-import { useCollection } from "~/hooks/collections.hook";
+import { useCollection } from "~/hooks/use-collections.hook";
 import { collectionApi } from "~/services/collection.service";
 
 export async function getStaticProps({

@@ -73,4 +73,10 @@ const defaultApiClient = new ApiClient(
   10000
 );
 
-export { defaultApiClient };
+const storeApiClient = new ApiClient(
+  process.env.NEXT_PUBLIC_STORE_API_URL || "",
+  { "Content-Type": "application/json" },
+  10000
+);
+
+export { defaultApiClient, storeApiClient };

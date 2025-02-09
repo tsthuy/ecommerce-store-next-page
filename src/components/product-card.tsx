@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HeartFavorite from "./heart-favorite";
 
 interface ProductCardProps {
   product: ProductType;
@@ -8,7 +9,10 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, updateSignedInUser }: ProductCardProps) => {
   return (
-    <Link href={`/products/${product._id}`}>
+    <Link
+      className="w-[220px] flex flex-col gap-2"
+      href={`/products/${product._id}`}
+    >
       <Image
         src={product.media[0]}
         alt={product.title}
@@ -20,6 +24,14 @@ const ProductCard = ({ product, updateSignedInUser }: ProductCardProps) => {
       <div className="">
         <p className="text-base-bold">{product.title}</p>
         <p className="text-small-medium text-grey-2">{product.category}</p>
+      </div>
+
+      <div className="flex justify-between items-center">
+        <p className="text-body-bold">{product.price}</p>
+        <HeartFavorite
+          product={product}
+          updateSignedInUser={updateSignedInUser}
+        ></HeartFavorite>
       </div>
     </Link>
   );
