@@ -9,3 +9,14 @@ export function useCollections() {
     queryFn: () => collectionApi.getCollections(),
   });
 }
+
+export function useCollection(
+  collectionId: string,
+  initialData?: CollectionType
+) {
+  return useQuery({
+    queryKey: QUERY_KEYS.collection.detail(collectionId).queryKey,
+    queryFn: QUERY_KEYS.collection.detail(collectionId).queryFn,
+    initialData,
+  });
+}
