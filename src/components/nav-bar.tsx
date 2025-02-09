@@ -6,11 +6,14 @@ import { CircleUserRound, Menu, Search, ShoppingCart } from "lucide-react";
 import { Input } from "./ui/input";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import useCart from "~/hooks/use-cart.hook";
 
 const NavBar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user } = useUser();
+
+  const { cartItems } = useCart();
 
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [query, setQuery] = useState("");
@@ -70,7 +73,7 @@ const NavBar = () => {
           className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white max-md:hidden"
         >
           <ShoppingCart />
-          <p className="text-base-bold">Cart ({2})</p>
+          <p className="text-base-bold">Cart ({cartItems.length})</p>
         </Link>
 
         <Menu
@@ -109,7 +112,7 @@ const NavBar = () => {
                 className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
               >
                 <ShoppingCart />
-                <p className="text-base-bold">Cart ({2})</p>
+                <p className="text-base-bold">Cart ({cartItems.length})</p>
               </Link>
             </div>
           </>

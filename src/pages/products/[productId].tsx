@@ -1,7 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import Gallery from "~/components/gallery";
 import ProductCard from "~/components/product-card";
-import { useProduct, useProducts } from "~/hooks/use-product.hook";
+import ProductInfo from "~/components/product-info";
+import { useProduct, useRelatedProducts } from "~/hooks/use-product.hook";
 import { productApi } from "~/services/product.service";
 
 interface ProductDetailsProps {
@@ -15,13 +16,16 @@ const ProductDetails = ({
 }: ProductDetailsProps) => {
   const { data: product } = useProduct(productDetails._id, productDetails);
 
-  const { data: related } = useProducts();
+  const { data: related } = useRelatedProducts(
+    productDetails._id,
+    relatedProducts
+  );
 
   return (
     <>
       <div className="flex justify-center items-start gap-16 py-10 px-5 max-md:flex-col max-md:items-center">
         <Gallery productMedia={product?.media || []} />
-        {/* <ProductInfo productInfo={product} /> */}
+        <ProductInfo productInfo={product || productDetails} />
       </div>
 
       <div className="flex flex-col items-center px-10 py-5 max-md:px-3">
