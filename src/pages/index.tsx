@@ -1,7 +1,17 @@
+import Image from "next/image";
+import Collections from "~/components/collections";
+
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-red-600">Hello, World!</h1>
-    </div>
+    <>
+      <Image
+        src="/banner.png"
+        alt="banner"
+        width={2000}
+        height={1000}
+        className="w-screen"
+      />
+      <Collections />
+    </>
   );
 }

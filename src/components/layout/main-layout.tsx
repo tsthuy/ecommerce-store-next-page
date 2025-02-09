@@ -1,5 +1,5 @@
 import React from "react";
-import ToasterProvider from "~/libs/provider/toast-provider";
+import ToasterProvider from "~/libs/toast-provider";
 import NavBar from "../nav-bar";
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
