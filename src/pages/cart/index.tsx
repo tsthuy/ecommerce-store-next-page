@@ -56,7 +56,7 @@ const Cart = () => {
                 key={index}
                 className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between"
               >
-                <div className="flex items-center">
+                <div className="flex items-center w-2/3">
                   <Image
                     src={cartItem.item.media[0]}
                     width={100}
@@ -72,15 +72,18 @@ const Cart = () => {
                     {cartItem.size && (
                       <p className="text-small-medium">{cartItem.size}</p>
                     )}
-                    <p className="text-small-medium">${cartItem.item.price}</p>
+                    <p className="text-small-bold">${cartItem.item.price}</p>
                   </div>
                 </div>
 
                 <div className="flex gap-4 items-center">
-                  <MinusCircle
-                    className="hover:text-red-1 cursor-pointer"
-                    onClick={() => cart.decreaseQuantity(cartItem.item._id)}
-                  />
+                  {cartItem.quantity > 0 && (
+                    <MinusCircle
+                      className="hover:text-red-1 cursor-pointer"
+                      onClick={() => cart.decreaseQuantity(cartItem.item._id)}
+                    />
+                  )}
+
                   <p className="text-body-bold">{cartItem.quantity}</p>
                   <PlusCircle
                     className="hover:text-red-1 cursor-pointer"
