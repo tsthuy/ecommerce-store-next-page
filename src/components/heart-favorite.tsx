@@ -2,8 +2,8 @@ import { useUser } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { wishlistApi } from "~/services/wishlist.service";
 import { useUserQuery } from "~/hooks/use-user.hook";
+import { useToggleProductWishlist } from "~/hooks/use-product.hook";
 
 interface HeartFavoriteProps {
   product: ProductType;
@@ -18,6 +18,7 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
   const { data: userData } = useUserQuery(user?.id || "");
+  const mutation = useToggleProductWishlist(product._id);
 
   useEffect(() => {
     if (userData) {
@@ -29,12 +30,13 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+
     try {
       if (!user) {
         router.push("/sign-in");
         return;
       } else {
-        const updatedUser = await wishlistApi.getWishlist(product._id);
+        const updatedUser = await mutation.mutateAsync();
         setIsLiked(updatedUser.wishlist.includes(product._id));
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         updateSignedInUser && updateSignedInUser(updatedUser);

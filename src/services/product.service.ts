@@ -8,4 +8,10 @@ export const productApi = {
 
   getProduct: (productId: string): Promise<ProductType> =>
     defaultApiClient.get(`/products/${productId}`),
+
+  getProductsWishlist: (wishlist: string[]): Promise<ProductType[]> => {
+    return Promise.all(
+      wishlist.map((productId: string) => productApi.getProduct(productId))
+    );
+  },
 };
